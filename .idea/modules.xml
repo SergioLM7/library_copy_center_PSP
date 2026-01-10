@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/centro_copias_biblioteca_PSP.iml" filepath="$PROJECT_DIR$/centro_copias_biblioteca_PSP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_copy_center_PSP.iml" filepath="$PROJECT_DIR$/library_copy_center_PSP.iml" />
     </modules>
   </component>
 </project>
