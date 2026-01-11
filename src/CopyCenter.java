@@ -7,34 +7,25 @@ public class CopyCenter {
         copyMachineIsUsed = new ArrayList<>();
 
         for(int i = 0; i < copyMachine; i++){
+            //Valor por defecto -> false = no está siendo utilizada; true = está siendo utilizada
             copyMachineIsUsed.add(false);
         }
     }
 
-    public synchronized int useCopyMachine() {
+    public synchronized int useCopyMachine() throws InterruptedException {
         while(!copyMachineIsUsed.contains(false)) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            wait();
         }
 
-        int machineToBeUsed = copyMachineIsUsed.indexOf(false);
-        copyMachineIsUsed.set(machineToBeUsed, true);
+        int copyMachineToBeUsedIndex = copyMachineIsUsed.indexOf(false);
+        copyMachineIsUsed.set(copyMachineToBeUsedIndex, true);
 
-        return machineToBeUsed;
+        return copyMachineToBeUsedIndex;
     }
 
     public synchronized void releaseCopyMachine(int copyMachineIndex) {
-
-        try {
-            Thread.sleep(700);
-            copyMachineIsUsed.set(copyMachineIndex, false);
-            notifyAll();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        copyMachineIsUsed.set(copyMachineIndex, false);
+        notifyAll();
     }
 
 }
